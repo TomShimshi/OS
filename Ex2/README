@@ -1,0 +1,52 @@
+roniabend, tomshim
+Roni Lea Abend (208512228), Tom Shimshi (209027036)
+EX: 1
+
+FILES:
+uthreads.cpp -- static library managing user-threads. 'uthreads.cpp' contains
+Thread class implementation.
+
+REMARKS:
+-
+
+ANSWERS:
+
+Q1: Siglongjmp and sigsetjmp:
+Answers:
+a) sigsetjmp is a function that saves the stack context and cpu state in env for later use.
+siglongjmp is a function that jumps to the code location and restore CPU state specified by env.
+b) sigsetjmp affects masking by the fact that if savesigs is not-zero, it saves the current signal
+mask as well so when siglongjmp is called it will be restored as well.
+
+Q2:
+Describe one general use of user-level threads and explain why user-level threads are a
+reasonable choice for your example.
+Answers:
+A general use of user-level threads is application that sorts an array using merge sort.
+Merge sort uses a division of the array recursively to two arrays. The sorting on each array can
+be done in two different threads as they are independent to each other. Using user-level threading
+is reasonable as there are many switches between the threads so the small overhead will be faster
+and more useful than kernel-level threads or processes.
+
+Q3:
+The advantages of using processes against kernel-level-threads are safety- each tab of chrome
+is independent to any other tab, and doesn't share address space, while they can still
+communicate with each other with the help of the OS.
+The disadvantages of using processes against kernel-level-threads are overhead- processes have
+higher runtime overhead over kernel-level threads (because every action needs to use the OS),
+and that in kernel-level threads the threads share address-space, that can be useful when we
+talk about some tabs of a single chrome application (instead of opening several chrome pages).
+
+Q4:
+c) Hardware interrupts - the keyboard sends an interrupt to the OS that handles it.
+Software interrupt - sent by the shell to the OS that handles it.
+Signal sent to the application by the OS for terminating (killing) the application.
+
+Q5:
+What is the difference between ‘real’ and ‘virtual’ time? Give one example of using each.
+Answer:
+'virtual' time is the running time of the process and the 'real' time is the time that has passed
+in the system. An example for using 'virtual' time is the exercise we were asked to calculate the
+quantum of the process (the total time the threads were running). An example for using 'real' time
+is in exercise 1, where we needed to calculate the actual time of syscalls verses functions and
+calculation of operations or when we want to calculate the overhead of a program.
